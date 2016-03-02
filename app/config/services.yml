@@ -7,8 +7,22 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.format:
+        class:     AppBundle\Service\Format
+        arguments: [ ~ , '@doctrine.orm.entity_manager']
     admin.user:
         class: AppBundle\Admin\UserAdmin
         arguments: [~, AppBundle\Entity\User, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Utilisateurs }
+    admin.poke:
+        class: AppBundle\Admin\PokeAdmin
+        arguments: [~, AppBundle\Entity\Poke, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Pokes, group: Pokes }   
+    admin.genre:
+        class: AppBundle\Admin\GenreAdmin
+        arguments: [~, AppBundle\Entity\Genre, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Genres, group: Pokes } 
+            
